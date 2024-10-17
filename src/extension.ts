@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
-import { setupFileWatcher } from "./fileGenerator"; // 引入文件生成模块
-import { isSolidityProject, isUsingFoundry } from "./projectChecker"; // 引入项目检查模块
-
+import { setupFileWatcher, setupMakefileCommand } from "./fileGenerator"; // 引入文件生成模块
+import { isSolidityProject, isUsingFoundry } from "./projectChecker";
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -16,22 +15,13 @@ export function activate(context: vscode.ExtensionContext) {
     'Congratulations, your extension "foundryfilehelper" is now active!'
   );
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  const disposable = vscode.commands.registerCommand(
-    "foundryfilehelper.generateFiles",
-    () => {
-      // The code you place here will be executed every time your command is executed
-      // Display a message box to the user
-      // vscode.window.showInformationMessage(
-      //   "Hello World from FoundryFileHelper!"
-      // );
-    }
-  );
-
-  context.subscriptions.push(disposable);
+  // 调用 setupFileWatcher 函数以设置文件监听器和命令
   setupFileWatcher(context);
+
+  // 注册生成 Makefile 的独立命令
+  setupMakefileCommand(context);
+
+  // 注册创建 Makefile 的命令
 }
 
 // This method is called when your extension is deactivated

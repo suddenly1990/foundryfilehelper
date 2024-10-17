@@ -35,3 +35,13 @@ export function isUsingFoundry(): boolean {
   const foundryConfigPath = path.join(workspacePath, "foundry.toml");
   return fs.existsSync(foundryConfigPath);
 }
+
+// 检查给定的文件是否存在
+export function doesFileExist(filePath: string): boolean {
+  try {
+    return fs.existsSync(filePath); // 使用 fs.existsSync 方法检查文件是否存在
+  } catch (err) {
+    console.error(`Error checking file existence: ${err}`);
+    return false; // 如果有错误，返回 false
+  }
+}
