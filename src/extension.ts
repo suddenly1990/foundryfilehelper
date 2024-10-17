@@ -1,5 +1,9 @@
 import * as vscode from "vscode";
-import { setupFileWatcher, setupMakefileCommand } from "./fileGenerator"; // 引入文件生成模块
+import {
+  setupFileWatcher,
+  setupMakefileCommand,
+  setupEnvFileCommand,
+} from "./fileGenerator"; // 引入文件生成模块
 import { isSolidityProject, isUsingFoundry } from "./projectChecker";
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -22,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
   setupMakefileCommand(context);
 
   // 注册创建 Makefile 的命令
+  setupEnvFileCommand(context);
 }
 
 // This method is called when your extension is deactivated

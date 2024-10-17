@@ -1,8 +1,8 @@
-import { capitalize } from "./utils";
+import { capitalize } from "../utils";
 
 export function getScriptContent(filename: string): string {
   return `// SPDX-License-Identifier: MIT
-  import {Script} from "forge-std/Script.sol";
+import {Script} from "forge-std/Script.sol";
 import {console2} from "forge-std/console2.sol";
 import {${capitalize(filename)}} from "../src/${capitalize(filename)}.sol";
 

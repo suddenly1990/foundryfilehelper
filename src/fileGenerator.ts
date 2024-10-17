@@ -2,10 +2,11 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 
-import { getScriptContent } from "./scriptTemplate"; // 从 scriptTemplate.ts 导入
+import { getScriptContent } from "./template/scriptTemplate"; // 从 scriptTemplate.ts 导入
 import { capitalize } from "./utils"; // 从 utils.ts 导入
-import { getTestContent } from "./testTemplate"; // 从 testTemplate.ts 导入
-import { getMakefileContent } from "./makefileTemplate"; // 从 makefileTemplate.ts 导入
+import { getTestContent } from "./template/testTemplate"; // 从 testTemplate.ts 导入
+import { getMakefileContent } from "./template/makefileTemplate"; // 从 makefileTemplate.ts 导入
+import { getEnvContent } from "./template/envTemplate";
 
 // 这个函数将文件监听和生成逻辑封装在一个函数中，供外部调用
 export function setupFileWatcher(context: vscode.ExtensionContext) {
@@ -85,4 +86,41 @@ export function setupMakefileCommand(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(createMakefileCommand);
+}
+
+// 这个函数用于生成 .env 文件
+export function setupEnvFileCommand(context: vscode.ExtensionContext) {
+  const createEnvFileCommand = vscode.commands.registerCommand(
+    "foundryfilehelper.createEnvFile",
+    async () => {
+      const envFilePath = path.join(
+        vscode.workspace.workspaceFolders![0].uri.fsPath,
+        ".env"
+      );
+
+      // 检查 .env 文件是否已经存在
+      if (fs.existsSync(envFilePath)) {
+        // 弹出提示框，询问是否覆盖
+        const userChoice = await vscode.window.showWarningMessage(
+          ".env file already exists. Do you want to overwrite it?",
+          { modal: true }, // 让弹窗变为模态窗口，强制用户做出选择
+          "Yes", // 提供 Yes 选项
+          "No" // 提供 No 选项
+        );
+
+        // 如果用户选择 No，则直接返回，不执行覆盖操作
+        if (userChoice !== "Yes") {
+          vscode.window.showInformationMessage(".env file creation canceled.");
+          return;
+        }
+      }
+
+      // 如果用户选择了覆盖或文件不存在，生成 .env 文件
+      const envFileContent = getEnvContent();
+      fs.writeFileSync(envFilePath, envFileContent);
+      vscode.window.showInformationMessage(".env file created successfully!");
+    }
+  );
+
+  context.subscriptions.push(createEnvFileCommand);
 }

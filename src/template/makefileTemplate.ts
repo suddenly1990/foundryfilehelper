@@ -40,8 +40,8 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 endif
 
-deployWTF:
-	@forge script script/DeployWTF.s.sol:DeployWTF $(NETWORK_ARGS)
+// deployWTF:
+// @forge script script/DeployWTF.s.sol:DeployWTF $(NETWORK_ARGS)
 
 // deployAndFaucet:
 // 	@forge script script/DeployAndFaucet.s.sol:DeployAndFaucet $(NETWORK_ARGS)

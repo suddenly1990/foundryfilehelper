@@ -27,6 +27,10 @@
       {
         "command": "foundryfilehelper.createMakefile",
         "title": "Generate Foundry Makefile"
+      },
+      {
+        "command": "foundryfilehelper.createEnvFile",
+        "title": "Generate Foundry Env"
       }
     ]
   },

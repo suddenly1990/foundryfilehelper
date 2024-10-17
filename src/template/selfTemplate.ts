@@ -1,4 +1,4 @@
-import { capitalize } from "./utils";
+import { capitalize } from "../utils";
 
 export function getSelfContent(filename: string): string {
   return `// SPDX-License-Identifier: MIT
