@@ -1,71 +1,36 @@
-# foundryfilehelper README
+# Foundry File Helper
 
-This is the README for your extension "foundryfilehelper". After writing up a brief description, we recommend including the following sections.
+**Foundry File Helper** is a VSCode extension specifically designed for Solidity developers to automatically generate file templates that conform to the Foundry project structure. This extension monitors the `.sol` files in the `src` directory and automatically creates corresponding deployment scripts and test files in the `script` and `test` directories.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- **Automatic File Generation**: When a new `.sol` file is created in the `src` directory, the extension automatically generates deployment scripts and test files, saving developers from manual file creation.
+- **Foundry Compatibility**: The extension is tailored for Foundry projects, ensuring that the generated files follow the Foundry structure standards.
+- **Streamlined Development**: Focus on coding by reducing the overhead of managing project files.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **Foundry**: This extension is designed to work with Foundry projects. Make sure you have Foundry installed and set up in your project.
+
+  [Installation guide for Foundry](https://getfoundry.sh/)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Currently, there are no additional settings required for this extension. Simply install and start using it with your Foundry project.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- No known issues at this time. Please report any bugs or issues you encounter.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
+- Initial release of Foundry File Helper.
+- Automatically generates test and deployment script files when Solidity files are created in the `src` directory.
 
 ## Following extension guidelines
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Ensure that you've followed [the extension guidelines](https://code.visualstudio.com/api/references/extension-guidelines) to create a high-quality extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy using Foundry File Helper and streamline your Solidity development process!**
