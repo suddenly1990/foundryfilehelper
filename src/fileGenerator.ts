@@ -3,6 +3,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { getScriptContent } from "./scriptTemplate"; // 从 scriptTemplate.ts 导入
 import { capitalize } from "./utils"; // 从 utils.ts 导入
+import { getTestContent } from "./testTemplate"; // 从 testTemplate.ts 导入
+import { getSelfContent } from "./selfTemplate"; // 从 selfTemplate.ts 导入
 
 // 这个函数将文件监听和生成逻辑封装在一个函数中，供外部调用
 export function setupFileWatcher(context: vscode.ExtensionContext) {
@@ -35,9 +37,18 @@ export function setupFileWatcher(context: vscode.ExtensionContext) {
 
     // 使用从 scriptTemplate.ts 导入的模板内容
     const scriptContent = getScriptContent(filename);
+    const testContent = getTestContent(filename);
+    const selfContent = getSelfContent(filename);
 
     fs.writeFileSync(scriptPath, scriptContent);
-    fs.writeFileSync(testPath, "// Auto-generated test file\n");
+    fs.writeFileSync(testPath, testContent);
+
+    const selfPath = path.join(
+      vscode.workspace.workspaceFolders![0].uri.fsPath,
+      "src",
+      `${capitalize(filename)}.sol`
+    );
+    fs.writeFileSync(selfPath, selfContent);
 
     // 显示提示信息
     vscode.window.showInformationMessage(
