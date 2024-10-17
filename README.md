@@ -1,6 +1,6 @@
 # Foundry File Helper
 
-**Foundry File Helper** is a VSCode extension specifically designed for Solidity developers to automatically generate file templates that conform to the Foundry project structure. This extension monitors the `.sol` files in the `src` directory and automatically creates corresponding deployment scripts and test files in the `script` and `test` directories.
+**Foundry File Helper** is a VSCode extension specifically designed for smartConcract developers to automatically generate file templates that conform to the Foundry project structure. This extension monitors the `.sol` files in the `src` directory and automatically creates corresponding deployment scripts and test files in the `script` and `test` directories.
 
 ## Features
 
@@ -27,10 +27,10 @@ Currently, there are no additional settings required for this extension. Simply 
 ### 0.0.1
 
 - Initial release of Foundry File Helper.
-- Automatically generates test and deployment script files when Solidity files are created in the `src` directory.
+- Automatically generates test and deployment script files when smartConcract files are created in the `src` directory.
 
 ## Following extension guidelines
 
 Ensure that you've followed [the extension guidelines](https://code.visualstudio.com/api/references/extension-guidelines) to create a high-quality extension.
 
-**Enjoy using Foundry File Helper and streamline your Solidity development process!**
+**Enjoy using Foundry File Helper and streamline your smartConcract development process!**

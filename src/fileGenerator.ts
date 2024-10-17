@@ -11,7 +11,7 @@ import { getSelfContent } from "./template/selfTemplate";
 
 // 这个函数将文件监听和生成逻辑封装在一个函数中，供外部调用
 export function setupFileWatcher(context: vscode.ExtensionContext) {
-  console.log('Extension "auto-solidity-files" is now active!');
+  console.log('Extension "auto-foundry-files" is now active!');
 
   // 监听 src 目录中的文件创建
   const watcher = vscode.workspace.createFileSystemWatcher("**/src/*.sol");
