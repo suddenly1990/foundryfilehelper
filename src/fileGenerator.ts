@@ -40,7 +40,6 @@ export function setupFileWatcher(context: vscode.ExtensionContext) {
       `Generated: ${scriptFilename} and ${testFilename}`
     );
   });
-
   context.subscriptions.push(watcher);
 }
 

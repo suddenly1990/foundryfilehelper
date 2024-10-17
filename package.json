@@ -1,21 +1,23 @@
 {
   "name": "foundryfilehelper",
   "displayName": "FoundryFileHelper",
-  "description": "create foundry file.",
+  "description": "create foundry file temples for src test script dir",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.94.0"
+    "vscode": "^1.93.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:solidity"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "foundryfilehelper.helloWorld",
-        "title": "Hello World"
+        "command": "foundryfilehelper.generateFiles",
+        "title": "Generate Foundry Files"
       }
     ]
   },
@@ -28,7 +30,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.94.0",
+    "@types/vscode": "^1.93.0",
     "@types/mocha": "^10.0.8",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
