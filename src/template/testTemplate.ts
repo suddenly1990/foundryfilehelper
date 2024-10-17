@@ -9,6 +9,8 @@ import {Deploy${capitalize(filename)}} from "../script/Deploy${capitalize(
     filename
   )}.s.sol";
 
+pragma solidity ^0.8.26;
+
 contract ${capitalize(filename)}Test is Test {
     ${capitalize(filename)} public contractInstance;
     Deploy${capitalize(filename)} public deployer;
