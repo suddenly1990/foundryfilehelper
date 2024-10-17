@@ -2,7 +2,7 @@
   "name": "foundryfilehelper",
   "displayName": "FoundryFileHelper",
   "description": "Foundry File Helper is a VSCode extension specifically designed for Solidity developers to automatically generate file templates that conform to the Foundry project structure. The extension monitors the .sol files in the src directory and automatically creates corresponding deployment scripts and test files in the script and test directories.\n\nKey Features:\n1. Automatic File Generation: When a new .sol file is created in the src directory, the extension automatically generates deployment scripts and test files, saving developers from manual file creation.\n2. Foundry Compatibility: The extension is tailored for Foundry projects, ensuring that the generated files follow the Foundry structure standards.\n3. Streamlined Development Process: Focus on coding by reducing the overhead of managing project files.\n\nThis is a simple yet effective tool, ideal for developers who frequently work with the Foundry framework.",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "publisher": "Satoshi",
   "engines": {
     "vscode": "^1.93.0"

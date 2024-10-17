@@ -8,7 +8,7 @@ import {${capitalize(filename)}} from "../src/${capitalize(filename)}.sol";
 
 pragma solidity ^0.8.26;
 
-abstract contract Deploy${capitalize(filename)} is Script {
+contract Deploy${capitalize(filename)} is Script {
     function run() external returns (${capitalize(filename)}) {
         vm.startBroadcast();
         ${capitalize(filename)} constract = new ${capitalize(filename)}();

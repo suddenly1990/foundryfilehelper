@@ -9,7 +9,7 @@ import {Deploy${capitalize(filename)}} from "../script/Deploy${capitalize(
     filename
   )}.s.sol";
 
-contract ${capitalize(filename)} Test is Test {
+contract ${capitalize(filename)}Test is Test {
     ${capitalize(filename)} public contractInstance;
     Deploy${capitalize(filename)} public deployer;
     function setUp() public {
