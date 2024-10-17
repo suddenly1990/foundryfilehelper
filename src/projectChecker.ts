@@ -2,8 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 
-// 检查项目是否为 Solidity 项目
-export function isSolidityProject(): boolean {
+// 检查项目是否为 Foundry 项目
+export function isFoundryProject(): boolean {
   const workspacePath = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
 
   if (!workspacePath) {

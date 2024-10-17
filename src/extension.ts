@@ -5,11 +5,14 @@ import {
   setupEnvFileCommand,
 } from "./fileGenerator"; // 引入文件生成模块
 import { isFoundryProject, isUsingFoundry } from "./projectChecker";
+import { setupFileDeletionWatcher } from "./fileDeletionWatcher";
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
+  //   // 如果不是 Solidity 项目或者没有使用 Foundry，就不执行任何操作
   if (!isFoundryProject() || !isUsingFoundry()) {
     return;
   }
@@ -26,6 +29,8 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册创建 Makefile 的命令
   setupEnvFileCommand(context);
+
+  setupFileDeletionWatcher(context);
 }
 
 // This method is called when your extension is deactivated
