@@ -6,6 +6,7 @@ import {
 } from "./fileGenerator"; // 引入文件生成模块
 import { isFoundryProject, isUsingFoundry } from "./projectChecker";
 import { setupFileDeletionWatcher } from "./fileDeletionWatcher";
+import { checkCorrespondingFile } from "./fileChecker"; // 导入文件检查器
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -31,6 +32,16 @@ export function activate(context: vscode.ExtensionContext) {
   setupEnvFileCommand(context);
 
   setupFileDeletionWatcher(context);
+
+  // // 注册检查对应文件的命令
+  // const checkFileCommand = vscode.commands.registerCommand(
+  //   "extension.checkCorrespondingFile",
+  //   () => {
+  //     checkCorrespondingFile();
+  //   }
+  // );
+
+  // context.subscriptions.push(checkFileCommand);
 }
 
 // This method is called when your extension is deactivated
