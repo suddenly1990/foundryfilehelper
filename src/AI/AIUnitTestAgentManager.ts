@@ -18,30 +18,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import { capitalize } from "../utils";
+import { AIUnitTestAgentPipeline } from "./AIUnitTestAgentPipeline";
+import { AIConfig, AGENT_NAMES } from "./aiConfig";
 
-export function getTestContent(filename: string): string {
-  return `// SPDX-License-Identifier: MIT
+export class AIUnitTestAgentManager {
+  private pipeline: AIUnitTestAgentPipeline;
 
-import {Test} from "forge-std/Test.sol";
-import {${capitalize(filename)}} from "../src/${capitalize(filename)}.sol";
-import {Deploy${capitalize(filename)}} from "../script/Deploy${capitalize(
-    filename
-  )}.s.sol";
+  constructor(configs: { [key: string]: AIConfig }) {
+    this.pipeline = new AIUnitTestAgentPipeline(configs);
+  }
 
-pragma solidity ^0.8.26;
-
-contract ${capitalize(filename)}Test is Test {
-    ${capitalize(filename)} public contractInstance;
-    Deploy${capitalize(filename)} public deployer;
-    function setUp() public {
-        deployer = new Deploy${capitalize(filename)}();
-        contractInstance = deployer.run();
-
+  async executePipeline(sourceCodeContent: string): Promise<string> {
+    try {
+      const result = await this.pipeline.execute(sourceCodeContent);
+      console.log("Pipeline execution completed. Final result:", result);
+      return result;
+    } catch (error) {
+      console.error("Error executing pipeline:", error);
+      throw error;
     }
-
-    function testExample() public {
-        // Add your test logic here
-    }
-}`;
+  }
 }

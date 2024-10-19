@@ -18,55 +18,42 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 import * as vscode from "vscode";
-import * as fs from "fs";
 import * as path from "path";
+import * as fs from "fs";
 import { capitalize } from "./utils";
 
-export function setupFileDeletionWatcher(context: vscode.ExtensionContext) {
-  // 监听文件删除事件
-  const deleteWatcher =
-    vscode.workspace.createFileSystemWatcher("**/src/*.sol");
+// 检查当前选中文件的对应文件是否存在
+export function checkCorrespondingFile() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    vscode.window.showInformationMessage("No file is currently open.");
+    return;
+  }
 
-  deleteWatcher.onDidDelete(async (uri) => {
-    const filename = path.basename(uri.fsPath, ".sol");
-    const scriptFilename = `Deploy${capitalize(filename)}.s.sol`;
-    const testFilename = `${capitalize(filename)}Test.t.sol`;
-    const selfFilename = `${capitalize(filename)}.sol`;
+  const currentFilePath = editor.document.fileName;
+  const currentFileName = path.basename(currentFilePath, ".sol");
+  const currentDir = path.dirname(currentFilePath);
 
-    const scriptPath = path.join(
-      vscode.workspace.workspaceFolders![0].uri.fsPath,
-      "script",
-      scriptFilename
-    );
-    const testPath = path.join(
+  let correspondingFilePath: string;
+
+  if (currentDir.includes("script")) {
+    // 当前文件在 script 目录中，检查 test 目录
+    const testFileName = `${capitalize(currentFileName)}Test.sol`;
+    correspondingFilePath = path.join(
       vscode.workspace.workspaceFolders![0].uri.fsPath,
       "test",
-      testFilename
+      testFileName
     );
-    const selfPath = path.join(
+  } else if (currentDir.includes("test")) {
+    // 当前文件在 test 目录中，检查 script 目录
+    const scriptFileName = `${currentFileName.replace("Test", "")}.sol`;
+    correspondingFilePath = path.join(
       vscode.workspace.workspaceFolders![0].uri.fsPath,
-      "src",
-      selfFilename
+      "script",
+      scriptFileName
     );
-
-    const userChoice = await vscode.window.showWarningMessage(
-      `Do you want to delete the related files: ${scriptFilename}, ${testFilename}, and ${selfFilename}?`,
-      { modal: true },
-      "Yes",
-      "No"
-    );
-
-    if (userChoice === "Yes") {
-      [scriptPath, testPath, selfPath].forEach((filePath) => {
-        if (fs.existsSync(filePath)) {
-          fs.unlinkSync(filePath);
-        }
-      });
-      vscode.window.showInformationMessage(
-        "Related files deleted successfully."
-      );
-    }
-  });
-
-  context.subscriptions.push(deleteWatcher);
+  } else {
+    return;
+  }
+  // 检查对应文件是否存在，并显示相应的消息
 }
