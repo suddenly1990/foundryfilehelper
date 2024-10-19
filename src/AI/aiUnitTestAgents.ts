@@ -19,7 +19,8 @@
 // SOFTWARE.
 
 // agents.ts
-// 此模块是为了实例化各种不同的AI agent从而为后续的测试代码生成、检查、评估、优化等提供支持
+
+// 此模块是为了实例化各种不同的AI agent从而为后续的测试代码生成、检查、评估、需改评估等提供支持
 import { AIConfig, AGENT_NAMES } from "./aiConfig"; // 确保大小写一致
 
 interface LanguageModel {
